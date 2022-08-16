@@ -25,6 +25,7 @@ public class ProductosController extends HttpServlet {
             productosDAO = new ProductosDAO();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductosController.class.getName()).log(Level.SEVERE, null, ex);
+
         }
         String accion;
         RequestDispatcher dispatcher = null;
@@ -35,9 +36,11 @@ public class ProductosController extends HttpServlet {
             dispatcher = request.getRequestDispatcher("Productos/index.jsp");
             List<Productos> listaProductos = productosDAO.ListarProductos();
             request.setAttribute("lista", listaProductos);
-            
+
         } else if (accion == "nuevo") {
+            //accion de crear un nuevo elemento 
             dispatcher = request.getRequestDispatcher("Productos/nuevo.jsp");
+
         } else if (accion == "insertar") {
             //accion de insertar
             String codigo = request.getParameter("codigo");
@@ -58,6 +61,7 @@ public class ProductosController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             Productos producto = productosDAO.mostrarProducto(id);
             request.setAttribute("producto", producto);
+
         } else if (accion == "actualizar") {
             //accion actualizar 
             int id = Integer.parseInt(request.getParameter("id"));
