@@ -35,10 +35,11 @@ public class ProductosController extends HttpServlet {
             dispatcher = request.getRequestDispatcher("Productos/index.jsp");
             List<Productos> listaProductos = productosDAO.ListarProductos();
             request.setAttribute("lista", listaProductos);
+            
         } else if (accion == "nuevo") {
             dispatcher = request.getRequestDispatcher("Productos/nuevo.jsp");
         } else if (accion == "insertar") {
-
+            //accion de insertar
             String codigo = request.getParameter("codigo");
             String nombre = request.getParameter("nombre");
             Double precio = Double.parseDouble(request.getParameter("precio"));
@@ -52,12 +53,13 @@ public class ProductosController extends HttpServlet {
             request.setAttribute("lista", listaProductos);
 
         } else if (accion == "modificar") {
+            //accion de modificar
             dispatcher = request.getRequestDispatcher("Productos/modificar.jsp");
             int id = Integer.parseInt(request.getParameter("id"));
             Productos producto = productosDAO.mostrarProducto(id);
             request.setAttribute("producto", producto);
         } else if (accion == "actualizar") {
-
+            //accion actualizar 
             int id = Integer.parseInt(request.getParameter("id"));
             String codigo = request.getParameter("codigo");
             String nombre = request.getParameter("nombre");
@@ -72,7 +74,7 @@ public class ProductosController extends HttpServlet {
             request.setAttribute("lista", listaProductos);
 
         } else if (accion == "eliminar") {
-
+            //accion de eliminar
             int id = Integer.parseInt(request.getParameter("id"));
 
             dispatcher = request.getRequestDispatcher("Productos/index.jsp");
