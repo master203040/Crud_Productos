@@ -12,11 +12,8 @@
     </head>
     <body>
         <h1 class="text-dark text-center fw-bold">Productos</h1>
-
-
-        <a class="text-dark btn btn-primary p-2 mx-5" href="ProductosController?accion=nuevo">Nuevo Registro</a>
-        <br><br/>
-        <div class="container border shadow-lg p-3 mb-5 bg-body rounded">
+        <a class="text-dark btn btn-secondary p-2 mx-5 mt-6" href="ProductosController?accion=nuevo">Nuevo Registro</a>
+        <div class="container border shadow-lg p-3 mb-5 bg-body rounded mt-3">
 
             <table class="table">
                 <thead>
