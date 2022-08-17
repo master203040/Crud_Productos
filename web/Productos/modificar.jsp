@@ -10,7 +10,7 @@
     <body>
         <h1>Modificar Registro</h1>
         <br/>
-        <form action="" method="POST" autocomplete="off">
+        <form action="ProductosController?accion=modificar" method="POST" autocomplete="off">
             <input type="hidden" name="id" id="id">
             <label>Codigo:</label>
             <input type="text" id="codigo" name="codigo">

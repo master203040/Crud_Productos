@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static jdk.nashorn.internal.runtime.Debug.id;
+
 
 @WebServlet(name = "ProductosController", urlPatterns = {"/ProductosController"})
 public class ProductosController extends HttpServlet {
@@ -25,8 +25,8 @@ public class ProductosController extends HttpServlet {
             productosDAO = new ProductosDAO();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductosController.class.getName()).log(Level.SEVERE, null, ex);
-
         }
+
         String accion;
         RequestDispatcher dispatcher = null;
         accion = request.getParameter("accion");
@@ -37,11 +37,11 @@ public class ProductosController extends HttpServlet {
             List<Productos> listaProductos = productosDAO.ListarProductos();
             request.setAttribute("lista", listaProductos);
 
-        } else if (accion == "nuevo") {
+        } else if ("nuevo".equals(accion)) {
             //accion de crear un nuevo elemento 
             dispatcher = request.getRequestDispatcher("Productos/nuevo.jsp");
 
-        } else if (accion == "insertar") {
+        } else if ("insertar".equals(accion)) {
             //accion de insertar
             String codigo = request.getParameter("codigo");
             String nombre = request.getParameter("nombre");
@@ -51,18 +51,18 @@ public class ProductosController extends HttpServlet {
             Productos productos = new Productos(0, codigo, nombre, precio, existencia);
 
             dispatcher = request.getRequestDispatcher("Productos/index.jsp");
-            productosDAO.insertar(productos);
+            Boolean insertar = productosDAO.insertar(productos);
             List<Productos> listaProductos = productosDAO.ListarProductos();
             request.setAttribute("lista", listaProductos);
 
-        } else if (accion == "modificar") {
+        } else if ("modificar".equals(accion)) {
             //accion de modificar
             dispatcher = request.getRequestDispatcher("Productos/modificar.jsp");
             int id = Integer.parseInt(request.getParameter("id"));
             Productos producto = productosDAO.mostrarProducto(id);
             request.setAttribute("producto", producto);
 
-        } else if (accion == "actualizar") {
+        } else if ("actualizar".equals(accion)) {
             //accion actualizar 
             int id = Integer.parseInt(request.getParameter("id"));
             String codigo = request.getParameter("codigo");
@@ -73,16 +73,15 @@ public class ProductosController extends HttpServlet {
             Productos productos = new Productos(id, codigo, nombre, precio, existencia);
 
             dispatcher = request.getRequestDispatcher("Productos/index.jsp");
-            productosDAO.actualizar(productos);
+            Boolean actualizar = productosDAO.actualizar(productos);
             List<Productos> listaProductos = productosDAO.ListarProductos();
             request.setAttribute("lista", listaProductos);
 
-        } else if (accion == "eliminar") {
+        } else if ("eliminar".equals(accion)) {
             //accion de eliminar
             int id = Integer.parseInt(request.getParameter("id"));
-
-            dispatcher = request.getRequestDispatcher("Productos/index.jsp");
             productosDAO.eliminar(id);
+            dispatcher = request.getRequestDispatcher("Productos/index.jsp");
             List<Productos> listaProductos = productosDAO.ListarProductos();
             request.setAttribute("lista", listaProductos);
 

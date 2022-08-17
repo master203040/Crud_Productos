@@ -123,7 +123,7 @@ public class ProductosDAO {
         PreparedStatement ps;
 
         try {
-            ps = conexion.prepareStatement("DELETE  FROM productos  WHERE id=?");
+            ps = conexion.prepareStatement("DELETE * FROM productos  WHERE id=?");
 
             ps.setInt(1,_id);
             ps.executeQuery();
